@@ -1,7 +1,7 @@
 
 <div class="flex">
-    <div class="flex-1 h-4rem bg-primary font-bold text-center p-4 border-round">1</div>
-    <form class="flex-auto	border-radius:30 flex align-items-center justify-content-center bg-blue-700 font-bold m-2 px-5 py-3 border-round flex-column gap-8" #memoForm="ngForm">
+    <div class="flex-auto"></div>
+    <form class="flex-auto flex align-items-center justify-content-center bg-blue-700 font-bold  py-5 border-round flex-column gap-5" #memoForm="ngForm">
         <span class="p-float-label">
             <input pInputText id="title" [(ngModel)]="memo.title" name="title" />
             <label htmlFor="title">Title</label>
@@ -20,5 +20,5 @@
         <p-button type="button" class="btn btn-default" (click)="newMemo(); memoForm.reset()">Add Memo</p-button>
 </form>
 
-    <div class="flex-1 h-4rem bg-primary font-bold text-center p-4 border-round">3</div>
+    <div class="flex-auto"></div>
 </div>

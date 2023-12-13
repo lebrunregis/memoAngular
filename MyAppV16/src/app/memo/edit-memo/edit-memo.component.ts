@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Memo } from 'src/app/service/memo';
+import { MemoService } from 'src/app/service/memo.service';
 
 @Component({
   selector: 'app-edit-memo',
@@ -6,11 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./edit-memo.component.css']
 })
 export class EditMemoComponent {
+  constructor(
+    private memoService: MemoService
+    ) { }
+  
 updateMemo() {
-throw new Error('Method not implemented.');
+  this.memoService.updateMemo(this.memo)
 }
-title: any;
-url: any;
-description: any;
-
+memo : Memo = new Memo()
 }

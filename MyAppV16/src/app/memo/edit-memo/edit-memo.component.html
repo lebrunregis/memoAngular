@@ -1,17 +1,18 @@
-<p>edit-memo works!</p>
 <form #memoForm="ngForm">
+    <label htmlFor="date">[(ngModel)]="memo.date.toString()"</label>
+
     <span class="p-float-label">
-    <input pInputText id="title" [(ngModel)]="title" />
+    <input pInputText id="title" [(ngModel)]="memo.title" />
     <label htmlFor="title">Title</label>
 </span>
 
 <span class="p-float-label">
-    <input pInputText id="url" [(ngModel)]="url" />
+    <input pInputText id="url" [(ngModel)]="memo.url" />
     <label htmlFor="url">URL</label>
 </span>
 
 <span class="p-float-label">
-    <input pInputText id="description" [(ngModel)]="description" />
+    <input pInputText id="description" [(ngModel)]="memo.details" />
     <label htmlFor="description">Description</label>
 </span>
 <button type="button" class="btn btn-default" (click)="updateMemo(); memoForm.reset()">Add Memo</button>

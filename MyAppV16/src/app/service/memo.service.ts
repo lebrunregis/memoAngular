@@ -7,16 +7,19 @@ import { Memo } from './memo';
 export class MemoService {
 
   public addMemo(memo:Memo){
-    memo.date = Date.now().toString()
-    localStorage.setItem(memo.date,JSON.stringify(memo))
+    memo.date = Date.now()
+    localStorage.setItem(memo.date.toString(),JSON.stringify(memo))
   }
 
   public  updateMemo(memo:Memo){
-    localStorage.setItem(memo.date ||Date.now().toString() ,JSON.stringify(memo))
+    if(memo.date != undefined){
+      this.deleteMemo(memo.date)
+      this.addMemo(memo)
+    }
   }
 
-  public  deleteMemo(date: string){
-localStorage.removeItem(date)
+  public  deleteMemo(date: number){
+localStorage.removeItem(date.toString())
   }
   
   public  async getMemos(): Promise<Memo[]> {

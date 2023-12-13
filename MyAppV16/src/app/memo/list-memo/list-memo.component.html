@@ -1,12 +1,13 @@
-<p-virtualScroller [value]="memos" scrollHeight="450px" [itemSize]="100" [lazy]="true" >
-    <ng-template pTemplate="header"> List of Memos </ng-template>
-    <ng-template let-memo pTemplate="item">
-        <div class="flex align-items-center p-3 w-full flex-wrap">
-            <div class="flex-1">
-                <h5 class="mb-2 text-base">{{ memo.title }}</h5>
-            </div>
-        </div>
-    </ng-template>
+<p-virtualScroller [value]="memos" scrollHeight="450px" [itemSize]="100" [lazy]="false" >
+    <ng-template pTemplate="header">List of Memos</ng-template> 
+    
+    <ng-template let-memo pTemplate="item"><div class="flex align-items-center w-full flex-wrap bg-blue-500 font-bold  p-2 border-round">
+            <div class="flex-auto bg-blue-700 border-round">
+                <h5 class="text-base">{{memo.date| date : 'medium'}}</h5>
+                <h5 class="text-base">{{ memo.title }}</h5>
+            </div> </div>
+    </ng-template> 
+
     <ng-template let-memo pTemplate="loadingItem">
         <div class="flex align-items-center p-3 w-full flex-wrap loading-item">
         </div>
