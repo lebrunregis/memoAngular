@@ -1,15 +1,36 @@
-<p-virtualScroller [value]="memos" scrollHeight="450px" [itemSize]="100" [lazy]="false" >
+<div class="flex flex-row justify-content-center">
+    <div  class="flex-auto"></div>
+    <div class="flex-auto min-w-max "  >
+  <p-virtualScroller  [value]="virtualMemos" scrollHeight="450px" [itemSize]="200" [lazy]="true" (onLazyLoad)="loadMemoLazy($event)">
     <ng-template pTemplate="header">List of Memos</ng-template> 
     
-    <ng-template let-memo pTemplate="item"><div class="flex align-items-center w-full flex-wrap bg-blue-500 font-bold  p-2 border-round">
-            <div class="flex-auto bg-blue-700 border-round">
-                <h5 class="text-base">{{memo.date| date : 'medium'}}</h5>
-                <h5 class="text-base">{{ memo.title }}</h5>
-            </div> </div>
+    <ng-template let-memo pTemplate="item">
+        <div class="flex flex-grow-1 bg-blue-700 p-2 border-round ">
+            <div class="flex flex-grow-1 flex-column flex-nowrap">
+                <p-fieldset legend={{memo.title}} [toggleable]="true">
+                    <div class="flex flex-column flex-nowrap">
+                    <p class="m-0">
+                        {{memo.details}}
+                    </p>
+                    <a href onclick="openLink(memo.url)" *ngIf='memo.url !== undefined'  target="_blank" rel="noopener noreferrer">{{ memo.url }}</a>
+                    <label class="text-base">Last edited :{{memo.date| date : 'medium'}}</label>
+                    </div>
+                </p-fieldset>
+            </div>
+            <div class="flex flex-column flex-nowrap align-items-center">
+            <p-button label="Edit" icon="pi pi-pencil" (onClick)="update(memo)" size="small"></p-button>
+            <p-button label="Delete" icon="pi pi-trash" (onClick)="delete(memo)" size="small"  severity="danger"></p-button>
+            </div>
+            
+    </div>
     </ng-template> 
 
     <ng-template let-memo pTemplate="loadingItem">
-        <div class="flex align-items-center p-3 w-full flex-wrap loading-item">
+        <div class="flex-auto bg-blue-700 border-round w-full loading-item p-5">
+            <p-image src="../../../assets/Spinner.gif" alt="Image" height="50"></p-image>
         </div>
     </ng-template>
 </p-virtualScroller>
+   </div>
+   <div  class="flex-auto"></div>
+</div>

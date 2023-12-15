@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Memo } from './memo';
 
 @Injectable({
@@ -6,20 +6,36 @@ import { Memo } from './memo';
 })
 export class MemoService {
 
+  @Output() contentsChanged = new EventEmitter<void>();
+
   public addMemo(memo:Memo){
     memo.date = Date.now()
     localStorage.setItem(memo.date.toString(),JSON.stringify(memo))
+    this.contentsChanged.emit();
+  }
+
+  public getMemoById(id:string) : Memo{
+    let jsonMemo = localStorage.getItem(id)
+    let memo;
+if (jsonMemo != undefined){
+memo = JSON.parse(jsonMemo)
+} else {
+ memo = new Memo()
+}
+    return memo
   }
 
   public  updateMemo(memo:Memo){
     if(memo.date != undefined){
       this.deleteMemo(memo.date)
       this.addMemo(memo)
+      this.contentsChanged.emit();
     }
   }
 
   public  deleteMemo(date: number){
 localStorage.removeItem(date.toString())
+this.contentsChanged.emit();
   }
   
   public  async getMemos(): Promise<Memo[]> {

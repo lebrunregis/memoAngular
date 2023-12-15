@@ -1,24 +1,48 @@
 
-<div class="flex">
-    <div class="flex-auto"></div>
-    <form class="flex-auto flex align-items-center justify-content-center bg-blue-700 font-bold  py-5 border-round flex-column gap-5" #memoForm="ngForm">
+<div class="flex flex-row justify-content-center">
+
+<div class="flex flex-shrink">
+    <form class="flex-auto flex align-items-center justify-content-center bg-blue-800 font-bold p-2 py-5 border-round flex-column gap-5" #memoForm="ngForm">
+        <div>
         <span class="p-float-label">
-            <input pInputText id="title" [(ngModel)]="memo.title" name="title" />
+            <input pInputText id="title" [(ngModel)]="memo.title" name="title" required minlength="10" maxlength="50"/>
             <label htmlFor="title">Title</label>
         </span>
-
+        
+        <div *ngIf="memoForm.dirty || memoForm.touched">
+            <label  *ngIf="memoForm.errors?.['required']" class="alert">
+                Title is required.
+            </label >
+            <label  *ngIf="memoForm.errors?.['minlength']" class="alert">
+                Title must be at least 10 characters long.
+            </label >
+        </div></div>
+        <div>
         <span class="p-float-label">
             <input pInputText id="url" [(ngModel)]="memo.url" name="url"/>
             <label htmlFor="url">URL</label>
         </span>
 
+        <div *ngIf="memoForm.dirty || memoForm.touched" class="alert">
+            <label  *ngIf="memoForm.errors?.['pattern']">
+                Url must be valid if there is one.
+            </label >
+        </div>
+    </div>
+    <div>
         <span class="p-float-label">
-          <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" id="details" [(ngModel)]="memo.details" name="details"></textarea>
+          <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" id="details" [(ngModel)]="memo.details" name="details"  maxlength="200"></textarea>
          <label htmlFor="details">Details</label>
-      </span>
+        </span>
 
-        <p-button type="button" class="btn btn-default" (click)="newMemo(); memoForm.reset()">Add Memo</p-button>
-</form>
+        <div *ngIf="memoForm.dirty || memoForm.touched" class="alert">
+            <label  *ngIf="memoForm.errors?.['maxlenght']">
+                Url must be valid if there is one.
+            </label >
+        </div>
+</div>
+        <p-button type="button" class="btn btn-default" [disabled]="!memoForm.valid" (click)="newMemo(); memoForm.reset()">Add Memo</p-button>
+    </form>
+    </div>
 
-    <div class="flex-auto"></div>
 </div>

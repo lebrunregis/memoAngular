@@ -11,15 +11,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ImageModule } from 'primeng/image';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { FieldsetModule } from 'primeng/fieldset';
+import { AccordionModule } from 'primeng/accordion';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
-import { CreateMemoComponent } from './memo/create-memo/create-memo.component';
+import { CreateMemoComponent } from './memo/create-memo/CreateMemoComponent';
 import { ListMemoComponent } from './memo/list-memo/list-memo.component';
 import { EditMemoComponent } from './memo/edit-memo/edit-memo.component';
-import { DetailMemoComponent } from './memo/detail-memo/detail-memo.component';
-import { DeleteMemoComponent } from './memo/delete-memo/delete-memo.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,6 @@ import { DeleteMemoComponent } from './memo/delete-memo/delete-memo.component';
     CreateMemoComponent,
     ListMemoComponent,
     EditMemoComponent,
-    DetailMemoComponent,
-    DeleteMemoComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,11 @@ import { DeleteMemoComponent } from './memo/delete-memo/delete-memo.component';
     CommonModule,
     FormsModule,
     RouterModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ImageModule,
+    SplitButtonModule,
+    FieldsetModule,
+    AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

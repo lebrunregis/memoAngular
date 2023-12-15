@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api/lazyloadevent';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LazyLoadEvent, MenuItem, MenuItemCommandEvent } from 'primeng/api';
 import { VirtualScrollerLazyLoadEvent } from 'primeng/virtualscroller';
 import { Memo } from 'src/app/service/memo';
 import { MemoService } from 'src/app/service/memo.service';
@@ -9,29 +10,56 @@ import { MemoService } from 'src/app/service/memo.service';
   templateUrl: './list-memo.component.html',
   styleUrls: ['./list-memo.component.css']
 })
-export class ListMemoComponent  implements OnInit {
+export class ListMemoComponent  implements OnInit, OnDestroy {
 
-memos!: Memo[];
-virtualMemos!:  Memo[];
-loadedMemos!: Memo[];
-
-constructor(private memoService: MemoService) {}
-
-ngOnInit() {
-  this.memoService.getMemos().then((memos: Memo[]) => {
-      this.memos = memos;
-  });
-  this.virtualMemos = Array.from({ length: 10000 });
+update(memo:Memo) {
+this._router.navigate(["memo/"+"edit/"+ memo.date])
 }
 
-loadMemoLazy(event: LazyLoadEvent) {
-  let first = event.first ||0;
-  let rows = event.first || 0;
-            let loadedMemos = this.memos.slice(first, first + rows);
+delete(memo:Memo){
+this._memoService.deleteMemo(memo.date!)
+}
 
-      //Array.prototype.splice.apply(this.virtualMemos, [...[first, rows], ...loadedMemos]);
+memos: Memo[] = [];
+hasMemos: boolean = false;
+virtualMemos:  Memo[]= [];
 
-      //event.forceUpdate();
+constructor(private _memoService: MemoService, private _router: Router) {
+   
+}
+
+updateMemos(){
+    this._memoService.getMemos().then((memos: Memo[]) => {
+      this.memos = memos;
+      this.hasMemos = this.memos.length >0 
+      this.virtualMemos = Array.from({ length: this.memos.length }); 
+  });
+}
+
+openLink(url: string){
+  window.open(url, "_blank");
+}
+
+ngOnInit() {
+  this.updateMemos()
+  this._memoService.contentsChanged.subscribe(this.updateMemos);
+}
+
+ngOnDestroy(){
+ //this._memoService.contentsChanged.unsubscribe();
+}
+
+loadMemoLazy(event: VirtualScrollerLazyLoadEvent) {
+   setTimeout(() => {
+    let loadedMemos = this.memos.slice(event.first, event.first! + event.rows!);
+
+   this.virtualMemos = loadedMemos
+
+    if(event.forceUpdate){
+      event.forceUpdate();
+    }
+    
+}, 1000);
 }
 
 }

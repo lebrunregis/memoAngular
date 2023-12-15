@@ -1,19 +1,41 @@
-<form #memoForm="ngForm">
-    <label htmlFor="date">[(ngModel)]="memo.date.toString()"</label>
 
-    <span class="p-float-label">
-    <input pInputText id="title" [(ngModel)]="memo.title" />
-    <label htmlFor="title">Title</label>
-</span>
+<div class="flex flex-row justify-content-center">
 
-<span class="p-float-label">
-    <input pInputText id="url" [(ngModel)]="memo.url" />
-    <label htmlFor="url">URL</label>
-</span>
-
-<span class="p-float-label">
-    <input pInputText id="description" [(ngModel)]="memo.details" />
-    <label htmlFor="description">Description</label>
-</span>
-<button type="button" class="btn btn-default" (click)="updateMemo(); memoForm.reset()">Add Memo</button>
-</form>
+    <div class="flex flex-shrink">
+        <form class="flex-auto flex align-items-center justify-content-center bg-blue-800 font-bold p-2 py-5 border-round flex-column gap-5" #memoForm="ngForm">
+            <div>
+            <span class="p-float-label">
+                <input pInputText id="title" [(ngModel)]="memo.title" name="title" required minlength="10"/>
+                <label htmlFor="title">Title</label>
+            </span>
+            
+            <div *ngIf="memoForm.dirty || memoForm.touched">
+                <label  *ngIf="memoForm.errors?.['required']" class="alert">
+                    Title is required.
+                </label >
+                <label  *ngIf="memoForm.errors?.['minlength']" class="alert">
+                    Title must be at least 10 characters long.
+                </label >
+            </div></div>
+            <div>
+            <span class="p-float-label">
+                <input pInputText id="url" [(ngModel)]="memo.url" name="url"/>
+                <label htmlFor="url">URL</label>
+            </span>
+    
+            <div *ngIf="memoForm.dirty || memoForm.touched" class="alert">
+                <label  *ngIf="memoForm.errors?.['pattern']">
+                    Url must be valid if there is one.
+                </label >
+            </div>
+        </div>
+            <span class="p-float-label">
+              <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" id="details" [(ngModel)]="memo.details" name="details"></textarea>
+             <label htmlFor="details">Details</label>
+            </span>
+    
+            <p-button type="button" class="btn btn-default" [disabled]="!memoForm.valid" (click)="updateMemo(); memoForm.reset()">Update Memo</p-button>
+        </form>
+        </div>
+    
+    </div>

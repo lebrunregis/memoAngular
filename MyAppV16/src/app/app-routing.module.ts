@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { provideRouter, RouterModule, Routes } from '@angular/router';
-import { CreateMemoComponent } from './memo/create-memo/create-memo.component';
-import { DeleteMemoComponent } from './memo/delete-memo/delete-memo.component';
-import { DetailMemoComponent } from './memo/detail-memo/detail-memo.component';
+import { CreateMemoComponent } from './memo/create-memo/CreateMemoComponent';
 import { ListMemoComponent } from './memo/list-memo/list-memo.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
 
-const routes: Routes = [   { path: 'nav', component: NavbarComponent },
+const routes: Routes = [  
+{ path: '', redirectTo: '/memo/list', pathMatch: 'full' }, 
+{ path: 'nav', component: NavbarComponent },
 { path: 'memo', children: 
 [ {
  path: 'create', component: CreateMemoComponent,
 }, {
  path: 'list', component: ListMemoComponent
 }, {
- path: 'detail', component: DetailMemoComponent
-}, {
- path: 'update', component: CreateMemoComponent
-}, {
- path: 'delete', component: DeleteMemoComponent
+ path: 'edit/:id', component: CreateMemoComponent
 }]
 }];
 
