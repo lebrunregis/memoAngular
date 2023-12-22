@@ -12,14 +12,14 @@
                     <p class="m-0">
                         {{memo.details}}
                     </p>
-                    <a href onclick="openLink(memo.url)" *ngIf='memo.url !== undefined'  target="_blank" rel="noopener noreferrer">{{ memo.url }}</a>
+                    <a href={{memo.url}} *ngIf='memo.url !== undefined'  target="_blank" rel="noopener noreferrer">{{ memo.url }}</a>
                     <label class="text-base">Last edited :{{memo.date| date : 'medium'}}</label>
                     </div>
                 </p-fieldset>
             </div>
             <div class="flex flex-column flex-nowrap align-items-center">
             <p-button label="Edit" icon="pi pi-pencil" (onClick)="update(memo)" size="small"></p-button>
-            <p-button label="Delete" icon="pi pi-trash" (onClick)="delete(memo)" size="small"  severity="danger"></p-button>
+            <p-button label="Delete" icon="pi pi-trash" (onClick)="delete($event, memo)" size="small"  severity="danger"></p-button>
             </div>
             
     </div>
@@ -31,6 +31,8 @@
         </div>
     </ng-template>
 </p-virtualScroller>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
    </div>
    <div  class="flex-auto"></div>
 </div>

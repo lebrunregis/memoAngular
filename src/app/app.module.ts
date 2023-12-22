@@ -15,6 +15,8 @@ import { ImageModule } from 'primeng/image';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { FieldsetModule } from 'primeng/fieldset';
 import { AccordionModule } from 'primeng/accordion';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +51,9 @@ import { EditMemoComponent } from './memo/edit-memo/edit-memo.component';
     ImageModule,
     SplitButtonModule,
     FieldsetModule,
-    AccordionModule
+    AccordionModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
