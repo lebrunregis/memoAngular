@@ -4,9 +4,9 @@
             <div class="flex flex-grow-1 flex-column flex-nowrap">
                 <p-fieldset legend={{memo.title}} [toggleable]="true" [collapsed]=true>
                     <div class="flex flex-column flex-nowrap">
-                    <p class="m-0">
+                    <pre class="m-0">
                         {{memo.details}}
-                    </p>
+                    </pre>
                     <a href={{memo.url}} *ngIf='memo.url !== undefined'  target="_blank" rel="noopener noreferrer">{{ memo.url }}</a>
                     <label class="text-base">Last edited: {{memo.date| date : 'medium'}}</label>
                     </div>
@@ -19,7 +19,8 @@
         </div>
     </div>
 </p-scrollPanel>
+
 <label *ngIf="!hasMemos">
-Add your first memo to the list
+    Add your first memo to the list
 </label>
 <p-confirmDialog></p-confirmDialog>
