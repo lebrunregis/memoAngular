@@ -4,6 +4,7 @@
     <div class="flex flex-shrink">
         <form class="flex-auto flex align-items-center justify-content-center bg-blue-800 font-bold p-2 py-5 border-round flex-column gap-5" #memoForm="ngForm">
             <div>
+                <input pInputText id="date" [(ngModel)]="memo.date" name="date" hidden/>
             <span class="p-float-label">
                 <input pInputText id="title" [(ngModel)]="memo.title" name="title" required minlength="10"/>
                 <label htmlFor="title">Title</label>
@@ -37,5 +38,5 @@
             <p-button type="button" class="btn btn-default" [disabled]="!memoForm.valid" (click)="updateMemo(); memoForm.reset()">Update Memo</p-button>
         </form>
         </div>
-    
+        <p-toast></p-toast>
     </div>

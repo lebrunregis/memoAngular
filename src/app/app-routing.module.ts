@@ -3,6 +3,7 @@ import { provideRouter, RouterModule, Routes } from '@angular/router';
 import { CreateMemoComponent } from './memo/create-memo/CreateMemoComponent';
 import { ListMemoComponent } from './memo/list-memo/list-memo.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
+import { EditMemoComponent } from './memo/edit-memo/edit-memo.component';
 
 const routes: Routes = [  
 { path: '', redirectTo: '/memo/list', pathMatch: 'full' }, 
@@ -13,7 +14,7 @@ const routes: Routes = [
 }, {
  path: 'list', component: ListMemoComponent
 }, {
- path: 'edit/:id', component: CreateMemoComponent
+ path: 'edit/:id', component: EditMemoComponent
 }]
 }];
 

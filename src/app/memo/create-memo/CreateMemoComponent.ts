@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { Memo } from 'src/app/service/memo';
 import { MemoService } from 'src/app/service/memo.service';
 
@@ -7,7 +8,8 @@ import { MemoService } from 'src/app/service/memo.service';
 @Component({
   selector: 'app-create-memo',
   templateUrl: './create-memo.component.html',
-  styleUrls: ['./create-memo.component.css']
+  styleUrls: ['./create-memo.component.css'],
+  providers: [MessageService]
 })
 export class CreateMemoComponent implements OnInit {
 
@@ -15,7 +17,8 @@ export class CreateMemoComponent implements OnInit {
   memo: Memo = new Memo();
 
   constructor(
-    private memoService: MemoService
+    private _memoService: MemoService,
+    private _messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +35,8 @@ export class CreateMemoComponent implements OnInit {
   }
 
   newMemo() {
-    this.memoService.addMemo(this.memo);
+    this._memoService.addMemo(this.memo);
+    this._messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Memo added' });
   }
 
 }
