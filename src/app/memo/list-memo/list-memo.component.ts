@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService, LazyLoadEvent, MenuItem, MenuItemCommandEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { VirtualScrollerLazyLoadEvent } from 'primeng/virtualscroller';
 import { Memo } from 'src/app/service/memo';
 import { MemoService } from 'src/app/service/memo.service';
@@ -43,7 +43,7 @@ updateMemos(){
 confirmDeletion(event: Event, memo:Memo) {
   this._confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to delete this memo?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass:"p-button-danger p-button-text",
@@ -80,7 +80,7 @@ loadMemoLazy(event: VirtualScrollerLazyLoadEvent) {
       event.forceUpdate();
     }
     
-}, 1000);
+}, 1);
 }
 
 }

@@ -3,6 +3,7 @@ import { Memo } from 'src/app/service/memo';
 import { MemoService } from 'src/app/service/memo.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MessageService }from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-memo',
@@ -17,9 +18,8 @@ export class EditMemoComponent {
   constructor(
     private _memoService: MemoService,
     private _route: ActivatedRoute,
+    private _router: Router , 
     private _messageService: MessageService) {   
-      console.log(this._route.snapshot.params);
-      console.log(this._route.snapshot.data);
     }
 
   ngOnInit() {
@@ -32,8 +32,9 @@ export class EditMemoComponent {
 
   updateMemo() {
     if (this.memo !== null){
-      this._memoService.updateMemo(this.memo)
-       this._messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Memo updated' });
+      this._memoService.updateMemo(this.memo)     
+        this._messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Memo updated' });
+          this._router.navigate(["memo/list"])
     }
   }
 }
