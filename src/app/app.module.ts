@@ -22,7 +22,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
-import { CreateMemoComponent } from './memo/create-memo/CreateMemoComponent';
+import { CreateMemoComponent } from './memo/create-memo/create-memo.component';
 import { ListMemoComponent } from './memo/list-memo/list-memo.component';
 import { EditMemoComponent } from './memo/edit-memo/edit-memo.component';
 

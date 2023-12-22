@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateMemoComponent } from './CreateMemoComponent';
+import { CreateMemoComponent } from './create-memo.component';
 
 describe('CreateMemoComponent', () => {
   let component: CreateMemoComponent;
