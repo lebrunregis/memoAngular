@@ -17,7 +17,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { AccordionModule } from 'primeng/accordion';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +53,8 @@ import { EditMemoComponent } from './memo/edit-memo/edit-memo.component';
     FieldsetModule,
     AccordionModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    ScrollPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

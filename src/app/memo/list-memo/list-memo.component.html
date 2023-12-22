@@ -1,10 +1,6 @@
-  <p-virtualScroller  [value]="virtualMemos" scrollHeight="99999px" class="full-height-scroller" [itemSize]="undefined" [lazy]="true" (onLazyLoad)="loadMemoLazy($event)">
-    <ng-template pTemplate="header">List of Memos</ng-template> 
-    
-    <ng-template let-memo pTemplate="item">
-        <div class="p-2">
+<p-scrollPanel [style]="{width: '100%', height: '100%'}">
 
-  
+        <div *ngFor="let memo of memos"class="p-2">
         <div class="flex flex-grow-1 bg-blue-700 p-2 border-round">
             <div class="flex flex-grow-1 flex-column flex-nowrap">
                 <p-fieldset legend={{memo.title}} [toggleable]="true" [collapsed]=true>
@@ -23,12 +19,5 @@
             </div>
                   </div>
     </div>
-    </ng-template> 
-
-    <ng-template let-memo pTemplate="loadingItem">
-        <div class="flex-auto bg-blue-700 border-round w-full loading-item p-5">
-            <p-image src="../../../assets/Spinner.gif" alt="Image" height="50"></p-image>
-        </div>
-    </ng-template>
-</p-virtualScroller>
+</p-scrollPanel>
 <p-confirmDialog></p-confirmDialog>

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { VirtualScrollerLazyLoadEvent } from 'primeng/virtualscroller';
 import { Memo } from 'src/app/service/memo';
 import { MemoService } from 'src/app/service/memo.service';
 
@@ -23,7 +22,6 @@ delete(event: Event, memo:Memo){
 
 memos: Memo[] = [];
 hasMemos: boolean = false;
-virtualMemos:  Memo[]= [];
 
 constructor(private _memoService: MemoService,
   private _router: Router , 
@@ -36,7 +34,6 @@ updateMemos(){
     this._memoService.getMemos().then((memos: Memo[]) => {
       this.memos = memos;
       this.hasMemos = this.memos.length > 0 
-      this.virtualMemos = Array.from({ length: this.memos.length }); 
   });
 }
 
@@ -68,19 +65,6 @@ ngOnInit() {
 
 ngOnDestroy(){
  //this._memoService.contentsChanged.unsubscribe();
-}
-
-loadMemoLazy(event: VirtualScrollerLazyLoadEvent) {
-   setTimeout(() => {
-    let loadedMemos = this.memos.slice(event.first, event.first! + event.rows!);
-
-   this.virtualMemos = loadedMemos
-
-    if(event.forceUpdate){
-      event.forceUpdate();
-    }
-    
-}, 1);
 }
 
 }
