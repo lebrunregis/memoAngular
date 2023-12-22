@@ -51,6 +51,7 @@ confirmDeletion(event: Event, memo:Memo) {
       accept: () => {
           this._messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Memo deleted' });
           this._memoService.deleteMemo(memo.date!)
+          this.updateMemos()
       },
       reject: () => {
          // this._messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
