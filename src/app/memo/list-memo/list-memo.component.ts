@@ -11,7 +11,12 @@ import { MemoService } from 'src/app/service/memo.service';
   providers: [ConfirmationService, MessageService]
 })
 export class ListMemoComponent  implements OnInit, OnDestroy {
-
+constructor(private _memoService: MemoService,
+  private _router: Router , 
+  private _confirmationService: ConfirmationService,
+  private _messageService: MessageService) {
+   
+}
 update(memo:Memo) {
 this._router.navigate(["memo/edit/"+ memo.date])
 }
@@ -23,12 +28,7 @@ delete(event: Event, memo:Memo){
 memos: Memo[] = [];
 hasMemos: boolean = false;
 
-constructor(private _memoService: MemoService,
-  private _router: Router , 
-  private _confirmationService: ConfirmationService,
-  private _messageService: MessageService) {
-   
-}
+
 
 updateMemos(){
     this._memoService.getMemos().then((memos: Memo[]) => {
@@ -61,11 +61,9 @@ confirmDeletion(event: Event, memo:Memo) {
 
 ngOnInit() {
   this.updateMemos()
-  this._memoService.contentsChanged.subscribe(this.updateMemos);
 }
 
 ngOnDestroy(){
- //this._memoService.contentsChanged.unsubscribe();
 }
 
 }
